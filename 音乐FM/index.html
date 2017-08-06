@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title></title>
+    <meta charset="UTF-8">
+    <style>
+        @font-face {
+            font-family: 'iconfont';
+            /* project id 325910 */
+            src: url('iconfonts/iconfont.eot');
+            src: url('iconfonts/iconfont.eot?#iefix') format('embedded-opentype'),
+            url('iconfonts/iconfont.woff') format('woff'),
+            url('iconfonts/iconfont.ttf') format('truetype'),
+            url('iconfonts/iconfont.svg#iconfont') format('svg');
+        }
+
+        .iconfontyyy {
+            font-family: "iconfont" !important;
+            font-size: 16px;
+            font-style: normal;
+            -webkit-font-smoothing: antialiased;
+            -webkit-text-stroke-width: 0.2px;
+            -moz-osx-font-smoothing: grayscale;
+            cursor: pointer;
+        }
+        body{
+            background: #FAFAFA;
+        }
+        .myplayer {
+            margin: 20px 30px;
+            color: #4a4a4a;
+            font-size: 15px;
+            width: 586px;
+            height: 190px;
+            /*border: 1px solid black;*/
+            cursor: default;
+            padding: 20px;
+        }
+
+        .panel {
+            position: relative;
+            width: 321px;
+            height: 190px;
+            /*border: 1px solid black;*/
+        }
+
+        .song {
+            font-size: 24px;
+            font-weight: 400;
+            color: #030303;
+            margin-bottom: 5px;
+        }
+
+        .singer {
+            margin: 15px 0;
+        }
+        .time{
+            font-size: 11px;
+            color: rgb(155, 155, 155);
+        }
+        
+        .volumwrap{                      /*音量部分*/
+            display: inline-block;
+            height: 21px;
+        }
+        .volumwrap:hover .volumbox{
+            width: 40px;
+        }
+        .volumico{
+            margin-left: 6px;
+            font-size: 13px;
+        }
+        .volumbox{       
+            /*display: none; */
+            display: inline-block;
+            transition: all .5s;           
+            overflow: hidden;
+            width: 0;
+            height: 2px;
+            margin-bottom: 3px;
+            background: #f1f1f1;
+        }
+        .select{                      /*音量部分*/
+            background: red;
+            width: 25px;
+            height: 2px;
+        }
+        .progress{                /* 进度条*/
+            width: 321px;
+            height: 2px;
+            background: #f1f1f1;
+        }
+        .cur-progress{
+            background: red;
+            height: 2px;
+            width: 0;
+        }                               /* 进度条*/
+
+        .control {
+            position: absolute;
+            width: 100%;
+            bottom: 0;
+            left: 0;
+        }
+
+        .control .iconfontyyy {
+            width: 30px;
+            font-size: 30px;
+            color: #4a4a4a;
+        }
+
+        .control .play {
+            position: absolute;
+            display: none;
+            top: 0px;
+            right: 70px;
+            font-size: 32px
+        }
+
+        .control .pause {
+            position: absolute;
+            right: 70px;
+            top: 3px;
+        }
+
+       .control .next {
+            position: absolute;
+            top: 0;
+            right: 0;
+        }
+       .control .delete {
+            margin-left: 40px;
+        }
+        .img-box {
+            float: right;
+            overflow: hidden;
+            width: 200px;
+            height: 200px;
+            margin-top: 16px;
+            border-radius: 50%;
+            animation: myfirst 40s infinite linear;
+        }
+         .img-box img{
+            width: 200px;
+            height: 200px;
+        }
+        @keyframes myfirst{
+            0%{transform: rotate(0)}
+            100%{transform: rotate(360deg)}
+        }
+       
+    </style>
+</head>
+
+<body>
+    <div class="myplayer">
+        <div class="img-box">
+            <img class='albumcover' src="" alt="">
+        </div>
+        <div class="panel">
+            <p class="song">骄傲的少年</p>
+            <p class="singer">南征北战</p>
+            <div class="time">
+                <span class="time goingtime">0:00</span><span>/</span><span class="time duration">03:02</span>
+                
+                <div class="volumwrap">
+                    <span><i class="iconfontyyy volumico">&#xe60a;</i></span>
+                     <div class="volumbox">
+                        <div class="select"></div>
+                    </div>
+                </div>
+               
+            </div>
+            <div class="progresswrap">
+                     <div class="progress">
+                        <div class="cur-progress"></div>
+                    </div>
+                </div>
+            <div class="control">
+                <i class="iconfontyyy">&#xe603;</i>
+                <i class="iconfontyyy delete">&#xe607;</i>
+                <i class="iconfontyyy pause">&#xe60f;</i>
+                <i class="iconfontyyy play">&#xe61d;</i>
+                <i class="iconfontyyy next">&#xe620;</i>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.js"></script>
+    <script src="js/source.js"></script>
+    <script src="js/main.js"></script>
+</body>
+
+</html>
