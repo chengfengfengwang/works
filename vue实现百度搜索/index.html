@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title></title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        ul,
+        li {
+            margin: 0;
+            padding: 0;
+            list-style: none
+        }
+
+        body {
+            background: url(./img/bg.png)
+        }
+
+        .mysearch {
+            margin-top: 150px;
+        }
+
+        .mysearch-title {
+            text-align: center;
+            margin: 30px auto;
+            font-size: 35px;
+            font-weight: 300;
+            color: #fff
+        }
+
+        .search-input {
+            text-align: center;
+        }
+
+        .search-input input {
+            margin: 0 auto;
+            padding-left: 10px;
+            box-sizing: border-box;
+            width: 50%;
+            height: 40px;
+            line-height: 30px;
+            border: 1px solid blueviolet;
+            font-size: 20px;
+            border-radius: 3px;
+        }
+
+        .search-input input::placeholder {
+            font-size: 18px;
+            color: #ccc;
+            font-style: italic
+        }
+
+        .search-result-box {
+            width: 50%;
+            box-sizing: border-box;
+            margin: 0 auto;
+            height: 0;
+            border: 1px solid #888;
+            border-top: none;
+            text-align: left;
+            font-size: 20px;
+            border-radius: 3px;
+            box-shadow: -1px 1px 5px rgba(243, 231, 231, .6);
+            color: #fff;
+            opacity: 1;
+            transition: all .5s
+        }
+
+        .search-result-box.hide {
+            display: none;
+        }
+
+        .search-result-box>li {
+            padding-left: 10px
+        }
+
+        .search-result-box>li.active {
+            background-color: rgba(245, 237, 237, .4)
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="mysearch" id="app">
+
+        <h1 class="mysearch-title">假装我是百度搜索:</h1>
+        <div class="search-input">
+            <input type="text" v-model="searchMsg" @blur="inputBlur" @keyUp.prevent="showList" placeholder=" 请在此输入搜索内容">
+        </div>
+
+        <ul class="search-result-box" :class={hide:hide}>
+            <li v-for="(item,index) in resultList" v-bind:class="{active:curIndex==index}">{{item}}</li>
+        </ul>
+
+
+    </div>
+    <script src="js/vue.js"></script>
+    <script src="js/vue-resource.js"></script>
+    <script>
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                searchMsg: '',
+                resultList: [],
+                curIndex: -1,
+                hide: false
+            },
+            methods: {
+                showList: function (event) {
+                    if (event.keyCode === 40) {
+                        this.changeDown()
+                    } else if (event.keyCode === 38) {
+                        this.changeUp()
+                    } else if (event.keyCode === 13) {
+                        window.open('https://www.baidu.com/s?wd=' + this.searchMsg)
+                    } else {
+                        this.$http.jsonp('https://sp0.baidu.com/5a1Fazu8AA54nxGko9WTAnF6hhy/su', { wd: this.searchMsg }, { jsonp: 'cb' }).then(function (res) {
+                            console.log(res.data.s)
+                            this.resultList = res.data.s
+                            this.popBox()
+                        })
+                    }
+                },
+                popBox: function () {
+                    this.hide = false;
+                    var resultBox = document.querySelector('.search-result-box');
+                    resultBox.style.height = this.resultList.length * 28 + 'px';
+
+                },
+                changeUp: function () {
+                    if (this.curIndex == -1) {
+                        this.curIndex = (this.resultList.length - 1)
+                    } else {
+                        this.curIndex--
+                    }
+                    this.searchMsg = this.resultList[this.curIndex]
+                },
+                changeDown: function () {
+                    if (this.curIndex == this.resultList.length - 1) {
+                        this.curIndex = 0
+                    } else {
+                        this.curIndex++
+                    }
+                    this.searchMsg = this.resultList[this.curIndex]
+                },
+                inputBlur: function () {
+                    this.hide = true
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>
