@@ -66,7 +66,7 @@
         <div class="screen-1__wrap">
             <p class="screen-1__heading up_animate_init">
                 <span class="screen-1__heading__part-1">小米手机</span>
-                <span class="screen-1__heading__part-2">买了都说好</span>
+                <span class="screen-1__heading__part-2"></span>
             </p>
         </div>
         <div class="screen-1__phone down_animate_init"></div>
@@ -223,7 +223,7 @@
             $('.screen-1__heading').addClass('animate_done');
             $('.screen-1__phone').addClass('animate_done');
             $('.screen-1__phone-shadow').addClass('animate_done');
-        }, 500)                             //第一屏动画
+        }, 1000)                             //第一屏动画
         $(window).on('scroll', function () {
             var $scrollTop = $(window).scrollTop();
             if ($scrollTop < 20) {
