@@ -1,0 +1,131 @@
+*{
+			margin: 0;
+			padding: 0;
+		}
+		@font-face {
+			  font-family: 'iconfontyyy';  /* project id 278772 */
+			  src: url('//at.alicdn.com/t/font_zkc2nlsqz392j4i.eot');
+			  src: url('//at.alicdn.com/t/font_zkc2nlsqz392j4i.eot?#iefix') format('embedded-opentype'),
+			  url('//at.alicdn.com/t/font_zkc2nlsqz392j4i.woff') format('woff'),
+			  url('//at.alicdn.com/t/font_zkc2nlsqz392j4i.ttf') format('truetype'),
+			  url('//at.alicdn.com/t/font_zkc2nlsqz392j4i.svg#iconfont') format('svg');
+			}
+		.iconfontyyy{
+			font-family:"iconfontyyy";
+			 font-size: 25px;
+			 margin-right: 20px;
+			}
+		body{
+			font-size: 18px;
+		}
+/*********************icon字体***********************/
+		.wrap{
+			width: 960px;
+			margin: 0 auto;
+			padding: 20px 40px;
+			border: 1px solid #eee;
+			background-color: #f9f7f7;
+		}
+		.wrap:after{
+			content: "";
+			display: block;
+			clear: both;
+		}
+        /*******************************************/
+        /* header部分 */
+
+		.header{
+			margin: 50px 0 70px 0;
+		}
+		
+	
+		.heading{
+            margin-left:30px;
+            font-size: 28px;
+        }
+        .name{
+            margin-bottom: 5px;
+        }
+		.contacts{
+			float: right;
+			width: 180px;
+			font-size: 16px;
+			margin-right: 30px;
+            line-height: 22px;
+		}
+		.contacts h4{
+			border-bottom: 2px solid #222;
+		}
+		.contacts span{
+			font-weight: 600;
+			margin-right: 5px;
+		}
+        /***********skill*****************/
+        
+		h2{
+			width: 400px;
+			border-bottom: 2px solid #222;
+			margin: 40px 0;
+			padding: 13px 0;
+        }
+        .skill{
+            position: relative;
+		}
+		.skill a{
+			margin: 0 10px
+		}
+        .skill-heading{
+            width: 400px;
+			border-bottom: 2px solid #222;
+			margin: 40px 0;
+			padding: 13px 0;
+        }
+		.skill-content,.person-info-content{
+			border-left: 1px solid #222;
+			padding-left: 75px;
+		}
+		.skill-content h3,.person-info h3{
+			font-size: 22px;
+            font-weight: 600;
+			position: relative;
+			margin-bottom: 15px;
+		}
+		.skill-content h3:before,.person-info-item h3:before{
+			content: "";
+			width: 10px;
+			height: 10px;
+			background-color: #222;
+			border-radius: 50%;
+			position: absolute;
+			top: 12px;
+			left: -80.5px;
+		}
+		.skill-item,.person-info-item{
+			font-weight: 300;
+			padding: 10px 0px
+		}
+		.skill-item_content,.person-info-item_content{
+			padding: 10px 0
+		}
+		.main-point{
+			padding: 10px 0;
+
+		}
+		/****************************/
+		.activity,.skills{
+			float: left;
+			width: 400px;
+		}
+		.skills{
+			margin-left: 160px;
+		}
+		.skills ul,.skills li{
+			padding: 0;
+			margin: 0;
+			list-style: none;
+		}
+		.skills li{
+			float: left;
+			width: 200px;
+			margin-bottom: 45px;
+		}
