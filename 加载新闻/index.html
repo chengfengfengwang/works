@@ -1,0 +1,150 @@
+<!doctype html>
+<html>
+
+<head>
+    <style>
+        body {
+            background: #f6f6f6
+        }
+
+        .news-container {
+            width: 1000px;
+            margin: 20px auto;
+        }
+        .news-container a{
+            text-decoration: none;
+            color: #fff
+        }
+        .news-container div {
+            background: #222;
+            color: #fff;
+            margin: 10px;
+            box-shadow: 2px 2px #f1f1f1;
+            border-radius: 4px;
+            
+            transform:translate(0,0) scale(.96,.96);
+            transition: all .5s
+        }
+         .news-container>div:hover{
+            transform:translate(-1px,-6px) scale(1,1)
+        } 
+        .news-container div p {
+            width: 190px;
+            margin-right: 747px;
+            margin-top: 20px;
+            padding: 20px;
+            line-height: 40px;
+            font-size: 20px;
+        }
+
+        .news-container div:after {
+            content: '';
+            display: block;
+            clear: both;
+        }
+
+        .news-container img {
+            width: 747px;
+            height: 394px;
+            float: right;
+        }
+        .loading-svg{
+            text-align: center;
+            display: none
+        }
+        .loading-svg.show{
+            margin-bottom: 90px;
+            display: block
+        }
+        .loading-svg>img{
+            width: 90px;
+            height: 90px;
+        }
+        .load-more {
+            width: 10px;
+            height: 10px;
+        }
+    </style>
+
+</head>
+
+<body>
+    
+    <div class="news-container"></div>
+    <div class="loading-svg">
+        <img src="img/loading.svg" alt="">
+    </div>
+    <div class="load-more"></div>
+    <script src="./src/jquery-3.2.1.min.js"></script>
+    <script>
+        (function loadNews() {
+            var num = 5;
+            var loadMore = $('.load-more');
+            var isLoading = false;
+            getNews();
+
+            $(window).on('scroll', function () {
+                if (isVisible(loadMore)) {
+                    setTimeout(function(){
+                        getNews()
+                    },300)
+                }
+            })
+            function getNews() {
+                if (isLoading) { return }  //状态锁，防止数据到来之前多次发送请求
+                isLoading = true;
+                $('.loading-svg').addClass('show')
+                console.log(num)
+                var apiUrl = 'http://api.tianapi.com/apple/?key=8686fc39c42e5f5f428a499129bad8d1&num='+num;
+                $.ajax({
+                    url: apiUrl,
+                    method: 'GET',
+                    success: function (response) {
+                        console.log(response);
+                        renderHtml(response);
+                        num += 5;
+                         console.log(num)
+                        isLoading = false; //结束状态锁
+                        $('.loading-svg').removeClass('show')
+                    }
+                })
+            }
+
+            function renderHtml(response) {
+                var newsList = response['newslist'];
+                if (newsList.length >= num) {
+                    newsList = newsList.slice(-5)     //提取出所获数据的最后五条
+                }
+                $.each(newsList, function (index, value) {
+                    var title = value.title;
+                    var link= value.url;
+                    /* if (value['imageurls'].length > 0) {
+                        var imgUrl = value['imageurls'][0]['url'];
+                    }else{
+                        var imgUrl = './img/timg.jpg';
+                    } */
+                    var imgUrl = value.picUrl;
+                    var htmlTemplate=`<div>
+                                        <a href="${link}">
+                                            <img src= ${imgUrl}>
+                                            <p>${value.title}</p>
+                                        </a>
+                                    </div>`
+                    $('.news-container').append(htmlTemplate)
+                })
+            }
+            function isVisible(node) {
+                var curWindowHeight = $(window).height(),
+                    nodeOffsetTop = node.offset().top,
+                    windowScrollTop = $(window).scrollTop();
+                if (nodeOffsetTop < (windowScrollTop + curWindowHeight) && windowScrollTop < (nodeOffsetTop + node.height())) {
+                    return true
+                } else {
+                    return false
+                }
+            }
+        })()
+    </script>
+</body>
+
+</html>
