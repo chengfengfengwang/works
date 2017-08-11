@@ -88,7 +88,7 @@
 
         <h1 class="mysearch-title">假装我是百度搜索:</h1>
         <div class="search-input">
-            <input type="text" v-model="searchMsg" @blur="inputBlur" @keyUp.prevent="showList" placeholder=" 请在此输入搜索内容">
+            <input type="text" v-model="searchMsg" @blur="inputBlur" @keyUp.prevent="showList" placeholder=" 请在此输入搜索内容,按下回车">
         </div>
 
         <ul class="search-result-box" :class={hide:hide}>
