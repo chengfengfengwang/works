@@ -1,5 +1,6 @@
 # FM 播放器
 ![](https://chengfengfengwang.github.io/works/FM.png)
+## [播放地址](https://chengfengfengwang.github.io/works/%E9%9F%B3%E4%B9%90FM/)
 ## 使用到的Audio属性方法有：
 Media = new Audio("http://www.abc.com/test.mp3"); <br>
 Media.currentTime = value; //当前播放的位置，赋值可改变位置 <br>
