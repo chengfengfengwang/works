@@ -1,5 +1,5 @@
 # FM 播放器
-[](https://chengfengfengwang.github.io/works/FM.png)
+![](https://chengfengfengwang.github.io/works/FM.png)
 ## 使用到的事件有：
 Media = new Audio("http://www.abc.com/test.mp3"); 
 Media.currentTime = value; //当前播放的位置，赋值可改变位置 
